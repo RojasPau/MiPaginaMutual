@@ -16,7 +16,14 @@
       --texto: #121826;
       --suave: #657084;
       --linea: #e6eaf1;
+      --linea-rgb: 230,234,241;
       --panel: #ffffff;
+      --panel-rgb: 255,255,255;
+      --panel-alpha: 255,255,255;
+      --input-bg: #ffffff;
+      --bg: #fbfaf6;
+      --body-bg: linear-gradient(180deg, #fffdf7 0%, #f7f9fd 52%, #ffffff 100%);
+      --shadow: 0 18px 42px rgba(24,32,44,.07);
       --verde: #16a36a;
       --azul: #244fd6;
       --amarillo: #f7a816;
@@ -29,13 +36,32 @@
       font-family: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
     }
 
+    body[data-theme="dark"] {
+      --fondo: #0f1724;
+      --texto: #ffffff;
+      --suave: #d4dce8;
+      --linea: #475569;
+      --linea-rgb: 71,85,105;
+      --panel: #0f172e;
+      --panel-rgb: 15,23,46;
+      --panel-alpha: 15,23,46;
+      --input-bg: #1a2847;
+      --bg: #020617;
+      --body-bg: linear-gradient(180deg, #020617 0%, #0f1724 52%, #0f172e 100%);
+      --shadow: 0 18px 42px rgba(0,0,0,.65);
+      --ok: #10b981;
+      --info: #3b82f6;
+      --alerta: #f59e0b;
+      --mal: #ef4444;
+    }
+
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       color: var(--texto);
-      background:
-        linear-gradient(180deg, #fffdf7 0%, #f7f9fd 52%, #ffffff 100%);
+      background: var(--body-bg);
+      transition: background .35s ease, color .35s ease;
     }
 
     .layout {
@@ -48,16 +74,16 @@
       z-index: 20;
       min-height: 62px;
       padding: 10px clamp(18px, 4vw, 54px);
-      background: rgba(255, 255, 255, .9);
-      border-bottom: 1px solid rgba(230,234,241,.9);
+      background: rgba(var(--panel-rgb), .92);
+      border-bottom: 1px solid rgba(var(--linea-rgb), .75);
       color: var(--texto);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      box-shadow: 0 12px 34px rgba(18,24,38,.06);
+      box-shadow: 0 12px 34px rgba(0,0,0,.15);
       backdrop-filter: blur(18px);
-      transition: transform .28s ease, box-shadow .28s ease;
+      transition: transform .28s ease, box-shadow .28s ease, background .35s ease, color .35s ease;
     }
 
     aside.nav-oculta {
@@ -133,6 +159,13 @@
     h2, h3 { font-family: "Aptos Display", "Segoe UI", Arial, sans-serif; }
     h2 { margin-bottom: 8px; font-size: clamp(1.8rem, 3vw, 2.7rem); letter-spacing: -.025em; }
     h3 { margin-bottom: 14px; font-size: 1.08rem; letter-spacing: -.01em; }
+    
+    body[data-theme="dark"] h1,
+    body[data-theme="dark"] h2,
+    body[data-theme="dark"] h3 {
+      color: #ffffff;
+      font-weight: 800;
+    }
     .muted { color: var(--suave); line-height: 1.45; }
 
     nav {
@@ -202,17 +235,28 @@
       min-height: 42px;
       border-radius: 999px;
       border: 1px solid var(--linea);
-      background: white;
+      background: var(--panel);
       color: var(--texto);
       padding: 10px 14px;
       cursor: pointer;
       font-weight: 800;
+      transition: background .3s ease, color .3s ease, border-color .3s ease;
+    }
+
+    body[data-theme="dark"] .boton {
+      border: 1.5px solid var(--linea);
+      color: #ffffff;
     }
 
     .boton.principal {
       border-color: var(--azul);
       background: var(--azul);
       color: white;
+    }
+
+    body[data-theme="dark"] .boton.principal {
+      border: 1.5px solid var(--azul);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
     }
 
     .seccion { display: none; }
@@ -227,9 +271,15 @@
     .panel {
       border: 1px solid var(--linea);
       border-radius: 16px;
-      background: rgba(255,255,255,.95);
+      background: rgba(var(--panel-rgb), .95);
       padding: clamp(18px, 3vw, 26px);
-      box-shadow: 0 18px 42px rgba(24,32,44,.07);
+      box-shadow: var(--shadow);
+      transition: background .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+
+    body[data-theme="dark"] .panel {
+      border: 1.5px solid var(--linea);
+      box-shadow: 0 0 20px rgba(71,85,105,.3), inset 0 1px 0 rgba(255,255,255,.1);
     }
 
     .inicio-web {
@@ -352,10 +402,23 @@
       box-shadow: 0 24px 46px rgba(0,0,0,.16);
     }
 
+    body[data-theme="dark"] .promo-card {
+      border: 1.5px solid rgba(255,255,255,.25);
+      box-shadow: 0 24px 46px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.1);
+    }
+
     .promo-card.destacada {
       background: rgba(255,255,255,.94);
       color: var(--texto);
       transform: rotate(-2deg);
+      transition: background .35s ease, color .35s ease, box-shadow .35s ease;
+    }
+
+    body[data-theme="dark"] .promo-card.destacada {
+      background: rgba(var(--panel-rgb), .98);
+      color: #ffffff;
+      border: 1.5px solid rgba(255,255,255,.3);
+      box-shadow: 0 24px 46px rgba(255,255,255,.15), inset 0 1px 0 rgba(255,255,255,.1);
     }
 
     .promo-card.secundaria {
@@ -425,9 +488,9 @@
       overflow: hidden;
       border-radius: 16px;
       padding: 22px;
-      background: white;
+      background: rgba(var(--panel-rgb), .96);
       border: 1px solid var(--linea);
-      box-shadow: 0 14px 34px rgba(24,32,44,.06);
+      box-shadow: 0 14px 34px rgba(0,0,0,.10);
     }
 
     .paso-web::after {
@@ -474,7 +537,7 @@
 
     .beneficios-destacados {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
     }
 
@@ -483,10 +546,19 @@
       min-height: 310px;
       overflow: hidden;
       border-radius: 18px;
-      background: white;
+      background: rgba(var(--panel-rgb), .96);
       border: 1px solid rgba(23,32,42,.08);
-      box-shadow: 0 18px 42px rgba(24,32,44,.08);
-      transition: transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 18px 42px rgba(0,0,0,.10);
+      transition: transform .2s ease, box-shadow .2s ease, background .35s ease;
+    }
+
+    body[data-theme="dark"] .beneficio {
+      border: 1.5px solid var(--linea);
+      box-shadow: 0 0 20px rgba(71,85,105,.2), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    body[data-theme="dark"] .beneficio:hover {
+      box-shadow: 0 0 30px rgba(71,85,105,.35), inset 0 1px 0 rgba(255,255,255,.08);
     }
 
     .beneficio:hover {
@@ -684,11 +756,22 @@
       vertical-align: middle;
     }
 
+    body[data-theme="dark"] th,
+    body[data-theme="dark"] td {
+      border-bottom: 1.5px solid var(--linea);
+      color: #f0f4f8;
+    }
+
     th {
       color: var(--suave);
       font-size: .78rem;
       text-transform: uppercase;
       letter-spacing: .06em;
+    }
+
+    body[data-theme="dark"] th {
+      color: #e5ebf5;
+      font-weight: 700;
     }
 
     label {
@@ -705,8 +788,21 @@
       border: 1px solid var(--linea);
       border-radius: 8px;
       padding: 10px 11px;
-      background: white;
+      background: var(--input-bg);
       color: var(--texto);
+      transition: background .35s ease, color .35s ease, border-color .35s ease;
+    }
+
+    body[data-theme="dark"] input,
+    body[data-theme="dark"] select,
+    body[data-theme="dark"] textarea {
+      border: 1.5px solid var(--linea);
+      background: rgba(26,40,71, .8);
+      color: #ffffff;
+    }
+
+    body[data-theme="dark"] input::placeholder {
+      color: rgba(255,255,255, .6);
     }
 
     textarea { min-height: 116px; resize: vertical; }
@@ -771,11 +867,12 @@
       overflow: auto;
       border: 1px solid var(--linea);
       border-radius: 14px;
-      background: #fbfcfd;
+      background: rgba(var(--panel-rgb), .96);
       padding: 12px;
       display: grid;
       align-content: start;
       gap: 8px;
+      transition: background .35s ease, border-color .35s ease;
     }
 
     .burbuja {
@@ -809,8 +906,9 @@
     .valor {
       border: 1px solid var(--linea);
       border-radius: 16px;
-      background: #fbfcfd;
+      background: rgba(var(--panel-rgb), .96);
       padding: 14px;
+      transition: background .35s ease, border-color .35s ease;
     }
 
     footer {
@@ -820,8 +918,24 @@
       flex-wrap: wrap;
       border-radius: 18px;
       padding: 18px;
-      background: #17202a;
-      color: white;
+      background: rgba(var(--panel-rgb), .96);
+      color: var(--texto);
+      border: 1px solid var(--linea);
+      transition: background .35s ease, color .35s ease, border-color .35s ease;
+    }
+
+    body[data-theme="dark"] footer {
+      border: 1.5px solid var(--linea);
+      box-shadow: 0 0 20px rgba(71,85,105,.2), inset 0 1px 0 rgba(255,255,255,.05);
+      color: #ffffff;
+    }
+
+    body[data-theme="dark"] footer a {
+      color: #e5ebf5;
+    }
+
+    body[data-theme="dark"] footer a:hover {
+      color: #ffffff;
     }
 
     footer span {
@@ -898,6 +1012,7 @@
         <button class="tab" data-ver="contacto">Contacto</button>
         <button class="tab" data-ver="proyecto">Proyecto</button>
       </nav>
+      <button id="toggleTema" class="boton" style="margin-top:12px;">Modo oscuro</button>
 
       <div class="datos-rapidos">
         <strong>Atención al asociado</strong><br>
@@ -975,7 +1090,7 @@
               <div class="beneficio-info">
                 <span class="beneficio-tag">Librería</span>
                 <h3>Librería Muñoz</h3>
-                <p class="muted">Útiles, materiales y compras escolares con beneficio.</p>
+                <p class="muted">10% de descuento para asociados en útiles y materiales escolares.</p>
               </div>
             </div>
             <div class="beneficio logo-contain">
@@ -984,7 +1099,7 @@
               <div class="beneficio-info">
                 <span class="beneficio-tag">Tienda</span>
                 <h3>Tienda Minima</h3>
-                <p class="muted">Beneficio para asociados presentando la credencial digital vigente.</p>
+                <p class="muted">15% de descuento pagando en efectivo y presentando DNI.</p>
               </div>
             </div>
             <div class="beneficio logo-contain">
@@ -993,7 +1108,7 @@
               <div class="beneficio-info">
                 <span class="beneficio-tag">Comercio</span>
                 <h3>Río</h3>
-                <p class="muted">Descuento especial para compras adheridas al convenio.</p>
+                <p class="muted">15% de descuento pagando en efectivo; trae tu DNI.</p>
               </div>
             </div>
             <div class="beneficio logo-contain">
@@ -1002,7 +1117,34 @@
               <div class="beneficio-info">
                 <span class="beneficio-tag">Heladería</span>
                 <h3>Heladería El Cielo</h3>
-                <p class="muted">Beneficio en heladería artesanal para asociados.</p>
+                <p class="muted">15% de descuento para asociados en sabor y atención artesanal.</p>
+              </div>
+            </div>
+            <div class="beneficio logo-contain">
+              <span class="descuento">10%</span>
+              <img src="mutuunidos.indexhtml_files/atenas.png" alt="Gimnasio Atenas">
+              <div class="beneficio-info">
+                <span class="beneficio-tag">Gimnasio</span>
+                <h3>Gimnasio Atenas</h3>
+                <p class="muted">10% de descuento en abonos para asociados UNI2.</p>
+              </div>
+            </div>
+            <div class="beneficio logo-contain">
+              <span class="descuento">20%</span>
+              <img src="mutuunidos.indexhtml_files/gq.png" alt="Gimnasio GQ">
+              <div class="beneficio-info">
+                <span class="beneficio-tag">Gimnasio</span>
+                <h3>Gimnasio GQ</h3>
+                <p class="muted">20% de descuento para asociados y pago al contado.</p>
+              </div>
+            </div>
+            <div class="beneficio logo-contain">
+              <span class="descuento">15%</span>
+              <img src="mutuunidos.indexhtml_files/juliana-deportiva.png" alt="Juliana Deportiva">
+              <div class="beneficio-info">
+                <span class="beneficio-tag">Deportiva</span>
+                <h3>Juliana Deportiva</h3>
+                <p class="muted">15% de descuento presentando credencial asociada.</p>
               </div>
             </div>
           </div>
@@ -1042,7 +1184,7 @@
           <article class="panel col-5">
             <h3>Estado del asociado</h3>
             <div class="detalle">
-              <div><dt>Valor de cuota</dt><dd>$2.500</dd></div>
+              <div><dt>Valor de cuota</dt><dd>$800</dd></div>
               <div><dt>Estado</dt><dd><span class="estado ok">Al día</span></dd></div>
               <div><dt>Vencimiento</dt><dd>Día 10</dd></div>
               <div><dt>Recargo</dt><dd>Desde el día 11</dd></div>
@@ -1058,25 +1200,25 @@
               <div class="servicio">
                 <div class="visual">Fotocopias <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 8V3h10v5"></path><path d="M6 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 13h12v8H6z"></path></svg></div>
                 <div class="cuerpo">
-                  <div class="precio"><span>Asociados</span><strong>$20 c/u</strong></div>
-                  <div class="precio"><span>No asociados</span><strong>$35 c/u</strong></div>
+                  <div class="precio"><span>Asociados simple</span><strong>$120</strong></div>
+                  <div class="precio"><span>No asociados simple</span><strong>$150</strong></div>
                   <p class="muted">Archivos por WhatsApp o mail.</p>
-                </div>
-              </div>
-              <div class="servicio">
+              <Sdiv class="servicio">
                 <div class="visual">Uniformes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4l4 3 4-3 4 4-3 3v9H7v-9L4 8z"></path><path d="M12 7v13"></path></svg></div>
                 <div class="cuerpo">
                   <div class="precio"><span>Remera</span><strong>$8.500</strong></div>
-                  <div class="precio"><span>Campera</span><strong>$18.000</strong></div>
+                  <div class="precio"><span>Campera asociado</span><strong>$30.000</strong></div>
+                  <div class="precio"><span>Campera no asociado</span><strong>$40.000</strong></div>
                   <p class="muted">Logo disponible solo para asociados.</p>
                 </div>
               </div>
               <div class="servicio">
                 <div class="visual">Cuadernillos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path></svg></div>
                 <div class="cuerpo">
-                  <div class="precio"><span>Acceso</span><strong>Asociados</strong></div>
-                  <div class="precio"><span>Entrega</span><strong>Por curso</strong></div>
-                  <p class="muted">Material reservado para miembros de la mutual.</p>
+                  <div class="precio"><span>Matemática</span><strong>3ro 3ra</strong></div>
+                  <div class="precio"><span>Lengua</span><strong>4to 2da</strong></div>
+                  <div class="precio"><span>Física</span><strong>5to 1ra</strong></div>
+                  <p class="muted">Material reservado para asociados.</p>
                 </div>
               </div>
             </div>
@@ -1086,7 +1228,7 @@
 
       <section id="cuotas" class="seccion">
         <div class="grilla">
-          <article class="panel metrica col-3"><h3>Cuota mensual</h3><div class="numero">$2.500</div><p class="muted">Marzo a diciembre.</p></article>
+          <article class="panel metrica col-3"><h3>Cuota mensual</h3><div class="numero">$800</div><p class="muted">Marzo a diciembre.</p></article>
           <article class="panel metrica col-3"><h3>Pagadas</h3><div class="numero">3</div><p class="muted">Según registro.</p></article>
           <article class="panel metrica col-3"><h3>Pendientes</h3><div class="numero" id="pendientes">1</div><p class="muted">Cuotas vencidas o del mes.</p></article>
           <article class="panel metrica col-3"><h3>Estado</h3><div class="numero" id="tipoDeuda">Pendiente</div><p class="muted">Moroso +3, incobrable +6.</p></article>
@@ -1115,13 +1257,13 @@
           <article class="panel col-6">
             <h3>Precios</h3>
             <table>
-              <thead><tr><th>Servicio</th><th>Asociado</th><th>No asociado</th><th>Notas</th></tr></thead>
+              <thead><tr><th>Servicio</th><th>Asociado</th><th>No asociado</th></tr></thead>
               <tbody>
-                <tr><td>Fotocopias</td><td>$20</td><td>$35</td><td>Archivos por WhatsApp o mail</td></tr>
-                <tr><td>Remera</td><td>$8.500</td><td>$10.000</td><td>Con logo para asociados</td></tr>
-                <tr><td>Campera</td><td>$18.000</td><td>$21.000</td><td>Por talle</td></tr>
-                <tr><td>Logo</td><td>$2.000</td><td>No disponible</td><td>Solo asociados</td></tr>
-                <tr><td>Cuadernillos</td><td>Según materia</td><td>No disponible</td><td>Solo asociados</td></tr>
+                <tr><td>Fotocopias simple</td><td>$120</td><td>$150</td></tr>
+                <tr><td>Fotocopias doble faz</td><td>$150</td><td>$200</td></tr>
+                <tr><td>Anillado</td><td>$2.500</td><td>-</td></tr>
+                <tr><td>Remera</td><td>$16.000</td><td>$20.000</td></tr>
+                <tr><td>Campera</td><td>$30.000</td><td>$40.000</td></tr>
               </tbody>
             </table>
           </article>
@@ -1163,15 +1305,25 @@
       <section id="admin" class="seccion">
         <div class="grilla">
           <article class="panel col-5">
-            <h3>Agregar al padrón</h3>
+            <h3>Registro de asociados y adherentes</h3>
             <div class="formulario">
-              <label>DNI <input id="dni" value="47.888.221"></label>
               <label>Nombre completo <input id="nombre" value="Micaela Fernández"></label>
-              <label>Categoría <select id="categoria"><option>Asociado</option><option>Adherente</option></select></label>
-              <label>Curso <input id="curso" value="3° 1°"></label>
+              <label>Gmail <input id="email" type="email" placeholder="nombre@gmail.com"></label>
+              <label>Número de celular <input id="celular" type="tel" placeholder="299 123 4567"></label>
+              <label>DNI <input id="dni" value="47.888.221"></label>
+              <label>Tipo de socio</label>
+              <div style="display:grid; gap:8px; padding-left:4px;">
+                <label><input type="radio" name="tipoSocio" value="Asociado" checked> Asociado</label>
+                <label><input type="radio" name="tipoSocio" value="Adherente"> Adherente</label>
+              </div>
+              <div id="detallesCurso">
+                <label>Curso <input id="curso" value="3° 1°"></label>
+                <label>División <input id="division" value="A"></label>
+              </div>
             </div>
-            <button class="boton principal" id="completar" style="margin-top:12px;">Completar credencial</button>
-            <p class="muted" style="margin-top:10px;">Las fichas cargadas generan la credencial y reemplazan el fichero manual.</p>
+            <button class="boton principal" id="completar" style="margin-top:12px;">Registrar socio</button>
+            <p class="muted" style="margin-top:10px;">Marca si es Asociado o Adherente; los asociados deben completar curso y división.</p>
+            <p class="aviso" style="margin-top:12px;">Precio de asociarse a la mutual: <strong>$800</strong>.</p>
           </article>
 
           <article class="panel col-7">
@@ -1213,9 +1365,8 @@
         <div class="grilla">
           <article class="panel col-4">
             <h3>Días y horarios</h3>
-            <p><strong>Lunes:</strong> 9:00 a 12:00</p>
-            <p><strong>Miércoles:</strong> 9:00 a 12:00</p>
-            <p><strong>Viernes:</strong> 9:00 a 12:00</p>
+            <p><strong>Lunes a jueves:</strong> 8:50 a 9:00, 10:20 a 10:30, 14:50 a 15:00, 16:20 a 16:30</p>
+            <p><strong>Viernes:</strong> 8:50 a 9:00, 10:20 a 10:30 (tarde cerrado)</p>
           </article>
 
           <article class="panel col-4">
@@ -1223,8 +1374,8 @@
             <div class="detalle">
               <div><dt>WhatsApp</dt><dd>299 000 0000</dd></div>
               <div><dt>Mail</dt><dd>mutualunidos@cet3.edu.ar</dd></div>
-              <div><dt>Medios</dt><dd>Efectivo, transferencia, billetera virtual</dd></div>
-              <div><dt>Alias</dt><dd>MUTUAL.UNIDOS.CET3</dd></div>
+              <div><dt>Instagram</dt><dd>@unidos.cet3</dd></div>
+              <div><dt>Pago por MP</dt><dd>Alias: cet3mutual.mp</dd></div>
             </div>
           </article>
 
@@ -1298,16 +1449,54 @@
 
   <script>
     const tabs = document.querySelectorAll(".tab");
-    const secciones = document.querySelectorAll(".seccion");
+    let currentSection = document.querySelector(".seccion.activa");
+    let currentTab = document.querySelector(".tab.activa");
 
     function ver(id) {
-      secciones.forEach(s => s.classList.toggle("activa", s.id === id));
-      tabs.forEach(t => t.classList.toggle("activa", t.dataset.ver === id));
+      const nuevaSeccion = document.getElementById(id);
+      if (!nuevaSeccion || nuevaSeccion === currentSection) return;
+      if (currentSection) currentSection.classList.remove("activa");
+      if (currentTab) currentTab.classList.remove("activa");
+      nuevaSeccion.classList.add("activa");
+      currentSection = nuevaSeccion;
+      currentTab = document.querySelector(`.tab[data-ver="${id}"]`);
+      if (currentTab) currentTab.classList.add("activa");
+      requestAnimationFrame(() => {
+        nuevaSeccion.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     }
 
     tabs.forEach(tab => tab.addEventListener("click", () => ver(tab.dataset.ver)));
     document.querySelectorAll("[data-ir]").forEach(boton => boton.addEventListener("click", () => ver(boton.dataset.ir)));
-    document.querySelector("#imprimir").addEventListener("click", () => window.print());
+    const imprimirBtn = document.querySelector("#imprimir");
+    if (imprimirBtn) imprimirBtn.addEventListener("click", () => window.print());
+
+    const temaToggle = document.querySelector("#toggleTema");
+    const temaPreferido = localStorage.getItem("tema") || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+    function aplicarTema(tema) {
+      document.body.dataset.theme = tema;
+      if (temaToggle) temaToggle.textContent = tema === "dark" ? "Modo claro" : "Modo oscuro";
+      localStorage.setItem("tema", tema);
+    }
+
+    if (temaToggle) {
+      temaToggle.addEventListener("click", () => aplicarTema(document.body.dataset.theme === "dark" ? "light" : "dark"));
+    }
+    aplicarTema(temaPreferido);
+
+    const tipoSocioRadios = document.querySelectorAll("input[name='tipoSocio']");
+    const detallesCurso = document.querySelector("#detallesCurso");
+
+    function actualizarVisibilidadCurso() {
+      const tipo = Array.from(tipoSocioRadios).find(r => r.checked)?.value;
+      if (detallesCurso) {
+        detallesCurso.style.display = tipo === "Asociado" ? "grid" : "none";
+      }
+    }
+
+    tipoSocioRadios.forEach(radio => radio.addEventListener("change", actualizarVisibilidadCurso));
+    actualizarVisibilidadCurso();
 
     function calcularDeuda() {
       const meses = Number(document.querySelector("#mesesDeuda").value || 0);
@@ -1328,20 +1517,25 @@
     document.querySelector("#completar").addEventListener("click", () => {
       const dni = document.querySelector("#dni").value;
       const nombre = document.querySelector("#nombre").value;
-      const categoria = document.querySelector("#categoria").value;
+      const email = document.querySelector("#email").value;
+      const celular = document.querySelector("#celular").value;
+      const categoria = document.querySelector("input[name='tipoSocio']:checked").value;
       const curso = document.querySelector("#curso").value || "No aplica";
+      const division = document.querySelector("#division").value || "";
+      const cursoCompleto = categoria === "Asociado" ? `${curso} ${division}`.trim() : "No aplica";
       document.querySelector("#cardDni").textContent = dni;
       document.querySelector("#cardNombre").textContent = nombre;
       document.querySelector("#cardCategoria").textContent = categoria;
-      document.querySelector("#cardCurso").textContent = curso;
+      document.querySelector("#cardCurso").textContent = cursoCompleto;
       document.querySelector("#estadoCredencial").textContent = categoria === "Asociado" ? "Asambleas habilitadas" : "Sin voto en asamblea";
-      document.querySelector("#padron").insertAdjacentHTML("afterbegin", `<tr><td>${dni}</td><td>${nombre}</td><td>${categoria}</td><td>${curso}</td><td>0/10</td><td><span class="estado alerta">Nuevo</span></td></tr>`);
+      document.querySelector("#padron").insertAdjacentHTML("afterbegin", `<tr><td>${dni}</td><td>${nombre}</td><td>${categoria}</td><td>${cursoCompleto}</td><td>0/10</td><td><span class="estado alerta">Nuevo</span></td></tr>`);
       ver("asociado");
     });
 
     const respuestas = [
       { claves: ["venc", "recargo", "10"], texto: "La cuota vence el día 10. Desde el día 11 se aplica recargo." },
-      { claves: ["horario", "atencion", "atención"], texto: "La atención es lunes, miércoles y viernes de 9:00 a 12:00." },
+      { claves: ["horario", "atencion", "atención"], texto: "El horario es lunes a jueves 8:50-9:00, 10:20-10:30, 14:50-15:00 y 16:20-16:30; viernes solo mañana." },
+      { claves: ["pago", "mp", "alias"], texto: "Podés pagar por Mercado Pago al alias cet3mutual.mp." },
       { claves: ["asociado", "adherente", "asamblea"], texto: "El asociado puede participar en asambleas. El adherente no vota." },
       { claves: ["fotocopia", "archivo", "mail", "whatsapp"], texto: "Los archivos para fotocopias se envían por WhatsApp o al mail de la mutual." },
       { claves: ["moroso", "incobrable", "deuda"], texto: "Más de 3 meses adeudados: moroso. Más de 6 meses: incobrable." }
