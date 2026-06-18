@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0102)file:///C:/Users/Estudiante/Documents/Codex/2026-05-26/hace-un-html-osea-una-pagina/mutual-unidos.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mutual.Unidos.CET3</title>
-  <style>
+  <style> 
     @font-face {
       font-family: "Adelia";
       src: url("assets/adelia.ttf") format("truetype");
@@ -62,8 +61,7 @@
       color: var(--texto);
       background: var(--body-bg);
       transition: background .35s ease, color .35s ease;
-    } 
-    <h1>PRUEBA VERCEL</h1>
+    }
 
     .layout {
       min-height: 100vh;
@@ -990,9 +988,9 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="dark">
   <div class="layout">
-    <aside>
+    <aside class="">
       <div class="marca">
         <div class="marca-nombre">
           <div class="lettering" aria-label="Mutual Unidos">
@@ -1013,7 +1011,7 @@
         <button class="tab" data-ver="contacto">Contacto</button>
         <button class="tab" data-ver="proyecto">Proyecto</button>
       </nav>
-      <button id="toggleTema" class="boton" style="margin-top:12px;">Modo oscuro</button>
+      <button id="toggleTema" class="boton" style="margin-top:12px;">Modo claro</button>
 
       <div class="datos-rapidos">
         <strong>Atención al asociado</strong><br>
@@ -1205,7 +1203,7 @@
                   <div class="precio"><span>Asociados simple</span><strong>$120</strong></div>
                   <div class="precio"><span>No asociados simple</span><strong>$150</strong></div>
                   <p class="muted">Archivos por WhatsApp o mail.</p>
-              <Sdiv class="servicio">
+              <sdiv class="servicio">
                 <div class="visual">Uniformes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4l4 3 4-3 4 4-3 3v9H7v-9L4 8z"></path><path d="M12 7v13"></path></svg></div>
                 <div class="cuerpo">
                   <div class="precio"><span>Remera</span><strong>$8.500</strong></div>
@@ -1213,7 +1211,7 @@
                   <div class="precio"><span>Campera no asociado</span><strong>$40.000</strong></div>
                   <p class="muted">Logo disponible solo para asociados.</p>
                 </div>
-              </div>
+              </sdiv></div>
               <div class="servicio">
                 <div class="visual">Cuadernillos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path></svg></div>
                 <div class="cuerpo">
@@ -1224,7 +1222,7 @@
                 </div>
               </div>
             </div>
-          </article>
+          </div></article>
         </div>
       </section>
 
@@ -1249,7 +1247,7 @@
               <label>Meses adeudados <input id="mesesDeuda" type="number" min="0" max="10" value="1"></label>
               <label>Día de pago <input id="diaPago" type="number" min="1" max="31" value="12"></label>
             </div>
-            <p class="aviso" id="alertaPago" style="margin-top:12px;"></p>
+            <p class="aviso" id="alertaPago" style="margin-top:12px;">Pendiente: 1 mes(es) adeudado(s), con recargo aplicado.</p>
           </article>
         </div>
       </section>
@@ -1315,10 +1313,10 @@
               <label>DNI <input id="dni" value="47.888.221"></label>
               <label>Tipo de socio</label>
               <div style="display:grid; gap:8px; padding-left:4px;">
-                <label><input type="radio" name="tipoSocio" value="Asociado" checked> Asociado</label>
+                <label><input type="radio" name="tipoSocio" value="Asociado" checked=""> Asociado</label>
                 <label><input type="radio" name="tipoSocio" value="Adherente"> Adherente</label>
               </div>
-              <div id="detallesCurso">
+              <div id="detallesCurso" style="display: grid;">
                 <label>Curso <input id="curso" value="3° 1°"></label>
                 <label>División <input id="division" value="A"></label>
               </div>
@@ -1570,6 +1568,7 @@
       ultimoScroll = actual;
     }, { passive: true });
   </script>
+
 
 
 </body></html>
